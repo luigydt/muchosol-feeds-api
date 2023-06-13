@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FeedModule } from './feed/feed.module';
+import { FeedModule } from './feed/module/feed.module';
 
 @Module({
   imports: [FeedModule],
