@@ -3,9 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FeedModule } from './feed/modules/feed.module';
 import { MongooseModule } from '@nestjs/mongoose'
+import * as dontenv from 'dotenv'
+
+dontenv.config()
 
 @Module({
-  imports: [FeedModule, MongooseModule.forRoot('mongodb+srv://user_1234:1234@cluster-luis.dx5gwm9.mongodb.net/?authMechanism=SCRAM-SHA-1')],
+  imports: [FeedModule, MongooseModule.forRoot(process.env.DB_MONGO_URI)],
   controllers: [AppController],
   providers: [AppService],
 })
