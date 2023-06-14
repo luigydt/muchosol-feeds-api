@@ -32,7 +32,21 @@ export class FeedController {
     async createFeed(
         @FeedDecorator() createFeedDto: FeedDto
     ): Promise<Feed> {
-        return await this.feedService.createFeed(createFeedDto)
+        return await this.feedService.createFeed(createFeedDto);
+    }
 
+    @Patch(`:${feedModuleConfig.id}`)
+    async updateFeed(
+        @FeedModelDecorator() feedHash: string,
+        @FeedDecorator() updateFeedDto: FeedDto
+    ): Promise<Feed> {
+        return await this.feedService.updateFeed(feedHash, updateFeedDto)
+    }
+
+    @Delete(`:${feedModuleConfig.id}`)
+    async deleteFeed(
+        @FeedModelDecorator() feedHash: string,
+    ) {
+        return await this.feedService.deleteFeed(feedHash)
     }
 }
