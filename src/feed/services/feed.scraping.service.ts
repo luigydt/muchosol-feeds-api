@@ -46,8 +46,6 @@ export class FeedScrapingService {
             };
             feedDtos.push(feed);
         });
-        console.log(feedDtos);
-
         for (const feedDto of feedDtos) {
             await this.feedModel.create(feedDto)
         }
