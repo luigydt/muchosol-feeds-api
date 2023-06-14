@@ -12,6 +12,7 @@ import { PaginationDecorator } from 'src/pagination/decorators/pagination.decora
 import { PaginationInterface } from 'src/pagination/interfaces/pagination.interface';
 import { SortDecorator } from 'src/sort/decorators/sort.decorator';
 import { SortInterface } from 'src/sort/interfaces/sort.interface';
+import { DailyNotice } from '../interfaces/daily-feeds.interface';
 
 
 @Controller('feeds')
@@ -28,6 +29,11 @@ export class FeedController {
         @SortDecorator() sort: SortInterface
     ): Promise<Feed[]> {
         return await this.feedService.getAllFeeds(params, pagination, sort);
+    }
+
+    @Get('daily-notices')
+    async getDailyNotices(): Promise<DailyNotice[]> {
+        return await this.feedService.getDailyNotices();
     }
 
     @Get(`:${feedModuleConfig.id}`)

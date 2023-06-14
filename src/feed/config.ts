@@ -11,5 +11,8 @@ export const feedModuleConfig = {
     defaultNoticeType: 'notice',
     events: {
         scrap: 'scrap-url'
-    }
+    },
+    diarys: [
+        'elpais',
+        'elmundo']
 }

@@ -5,6 +5,9 @@ import { Injectable } from '@nestjs/common';
 export class AppService {
 
   getHello(): string {
-    return '<h2>Daily Trends<h2>';
+    return `<h1>"Daily Trends"<h1>
+    <h2>Prueba Técnica MuchoSol<h2>
+    <h2>Luis Andrade<h2>
+    `;
   }
 }

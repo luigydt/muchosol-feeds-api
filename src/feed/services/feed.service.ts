@@ -7,6 +7,7 @@ import { FeedDto } from '../dto/feed.dto';
 import { createHash, getFirstMinuteDay } from 'src/helper/helper.service';
 import { PaginationInterface } from 'src/pagination/interfaces/pagination.interface';
 import { SortInterface } from 'src/sort/interfaces/sort.interface';
+import { DailyNotice } from '../interfaces/daily-feeds.interface';
 
 const defaultProjection = '-_id -__v -createdAt -updatedAt -hash';
 @Injectable()
@@ -30,6 +31,23 @@ export class FeedService {
         }
 
         return query;
+    }
+
+    public async getDailyNotices(): Promise<DailyNotice[]> {
+        const dailyNotices: DailyNotice[] = []
+        for (const diary of feedModuleConfig.diarys) {
+            const query = this.prepareQuery({ dateNotice: new Date(), source: diary })
+            const notices = await this.feedModel.find(query)
+                .limit(5)
+                .sort('createdAt')
+                .select(defaultProjection);
+            dailyNotices.push({
+                source: diary,
+                notices
+            })
+        }
+        return dailyNotices;
+
     }
     public async getAllFeeds(
         params: FeedQueryParams,
@@ -72,5 +90,7 @@ export class FeedService {
         }
         return feed;
     }
+
+
 }
 
