@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose'
 import { feedModuleConfig } from '../config';
 import { Model } from 'mongoose';
 import { FeedDto } from '../dto/feed.dto';
-import { createHash } from 'src/helper/helper.service';
+import { createHash, getFirstMinuteDay } from 'src/helper/helper.service';
 import { PaginationInterface } from 'src/pagination/interfaces/pagination.interface';
 import { SortInterface } from 'src/sort/interfaces/sort.interface';
 
@@ -15,16 +15,31 @@ export class FeedService {
         @InjectModel(feedModuleConfig.nameModel)
         private readonly feedModel: Model<Feed>) {
     }
+    private prepareQuery(params: FeedQueryParams): any {
+        const query = {
+            ...params,
+            content: { $ne: '' },
+            autor: { $ne: '' },
+            url: { $ne: '' }
+        } as any
+        if (params?.dateNotice) {
+            query.dateNotice = { $gte: getFirstMinuteDay(params?.dateNotice) }
+        }
+        if (params?.source) {
+            query.source = { $regex: `.*${params.source}.*`, $options: 'i' }
+        }
+
+        return query;
+    }
     public async getAllFeeds(
         params: FeedQueryParams,
         pagination: PaginationInterface,
         sort: SortInterface): Promise<Feed[]> {
-        console.log(params, pagination, sort);
-
-        return await this.feedModel.find(params)
-        .limit(pagination.limit)
-        .sort(sort.sort)
-        .select(defaultProjection);
+        const query = this.prepareQuery(params)
+        return await this.feedModel.find(query)
+            .limit(pagination.limit)
+            .sort(sort.sort)
+            .select(defaultProjection);
     }
 
     public async createFeed(createFeedDto: FeedDto): Promise<Feed> {

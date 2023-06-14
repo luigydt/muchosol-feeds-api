@@ -1,6 +1,7 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 import * as moment from 'moment';
 import { FeedQueryParams } from '../interfaces/feed.interface';
+import { getFirstMinuteDay } from 'src/helper/helper.service';
 
 export const FeedQueryParamsDecorator = createParamDecorator((data, ctx: ExecutionContext) => {
     const req = ctx.switchToHttp().getRequest()
@@ -19,7 +20,7 @@ export const FeedQueryParamsDecorator = createParamDecorator((data, ctx: Executi
         params.description = req.query.description as string
     }
     if (req.query.dateNotice) {
-        params.dateNotice = moment(req.query.dateNotice, 'DD-MM-YYYY').toDate()
+        params.dateNotice = moment(req.query.dateNotice, 'DD-MM-YYYY').toDate();
     }
     if (req.query.content) {
         params.content = req.query.content as string
