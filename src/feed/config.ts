@@ -1,4 +1,10 @@
+enum StateTipe {
+    PUBLICADO = 'released',
+    BORRADOR = 'drat'
+}
+
 export const feedModuleConfig = {
     nameModel: 'feed',
-    id: 'feedId'
+    id: 'feedId',
+    stateEnun: StateTipe
 }
