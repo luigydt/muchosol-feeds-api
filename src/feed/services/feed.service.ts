@@ -24,17 +24,17 @@ export class FeedService {
     }
 
     public async getOneFeed(hashId: string): Promise<Feed> {
-        const feed = this.checkFeed(hashId, defaultProjection)
+        const feed = await this.checkFeed(hashId, defaultProjection)
         return feed;
     }
 
     public async updateFeed(hashId: string, updateFeedDto: FeedDto): Promise<Feed> {
-        const feed = this.checkFeed(hashId)
+        const feed = await this.checkFeed(hashId)
         return await this.feedModel.findByIdAndUpdate(feed, updateFeedDto).select(defaultProjection);
     }
 
     public async deleteFeed(hashId: string) {
-        const feed = this.checkFeed(hashId)
+        const feed = await this.checkFeed(hashId)
         return await this.feedModel.findByIdAndDelete(feed);
     }
 

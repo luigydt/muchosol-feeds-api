@@ -15,21 +15,24 @@ export const FeedDecorator = createParamDecorator((data, ctx: ExecutionContext) 
     if (req.body.description) {
         feedDTO.description = req.body.description as string
     }
+    if (req.body.source) {
+        feedDTO.source = req.body.source as string
+    }
     if (req.body.noticeDate) {
         feedDTO.noticeDate = moment(req.body.noticeDate, 'DD-MM-YYYY').toDate()
     }
-     if (req.body.content) {
+    if (req.body.content) {
         feedDTO.content = req.body.content as string
     }
-     if (req.body.autor) {
+    if (req.body.autor) {
         feedDTO.autor = req.body.autor as string
     }
-     if (req.body.url) {
+    if (req.body.url) {
         feedDTO.url = req.body.url as string
     }
-     if (req.body.state) {
+    if (req.body.state) {
         feedDTO.state = req.body.state as string
-    }    
+    }
 
     return feedDTO;
 });

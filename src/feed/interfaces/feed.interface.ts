@@ -7,6 +7,7 @@ export interface Feed extends Document {
     autor: string;
     url?: string;
     state: string;
+    source: string;
     hash: string;
     dateNotice: Date;
     createdAt: Date;
@@ -22,6 +23,7 @@ export interface FeedQueryParams {
     autor: string;
     url?: string;
     state: string;
+    source: string;
     hash: string;
     dateNotice: Date;
     createdAt: Date;

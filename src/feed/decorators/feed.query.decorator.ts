@@ -13,6 +13,9 @@ export const FeedQueryParamsDecorator = createParamDecorator((data, ctx: Executi
     if (req.body.title) {
         params.title = req.body.title as string
     }
+    if (req.body.source) {
+        params.source = req.body.source as string
+    }
     if (req.body.description) {
         params.description = req.body.description as string
     }

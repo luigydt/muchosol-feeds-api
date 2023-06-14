@@ -25,6 +25,9 @@ export class FeedDto {
     autor: string;
 
     @IsString()
+    source: string;
+
+    @IsString()
     url?: string;
 
     @IsString()

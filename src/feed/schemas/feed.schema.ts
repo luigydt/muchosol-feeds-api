@@ -9,6 +9,7 @@ export const FeedSchema = new Schema({
     noticeDate: { type: Date },
     content: { type: String, },
     autor: { type: String },
+    source: { type: String },
     url: { type: String },
     state: { type: String },
 }, { timestamps: true })
