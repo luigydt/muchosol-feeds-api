@@ -7,7 +7,7 @@ export const FeedSchema = new Schema({
     title: { type: String, default: null },
     description: { type: String, default: null },
     hash: { type: String },
-    noticeDate: { type: Date, default: null },
+    dateNotice: { type: Date, default: null },
     content: { type: String, default: null },
     autor: { type: String, default: null },
     source: { type: String, default: null },

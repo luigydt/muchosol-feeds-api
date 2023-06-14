@@ -5,6 +5,8 @@ import { feedModuleConfig } from '../config';
 import { Model } from 'mongoose';
 import { FeedDto } from '../dto/feed.dto';
 import { createHash } from 'src/helper/helper.service';
+import { PaginationInterface } from 'src/pagination/interfaces/pagination.interface';
+import { SortInterface } from 'src/sort/interfaces/sort.interface';
 
 const defaultProjection = '-_id -__v -createdAt -updatedAt -hash';
 @Injectable()
@@ -13,8 +15,16 @@ export class FeedService {
         @InjectModel(feedModuleConfig.nameModel)
         private readonly feedModel: Model<Feed>) {
     }
-    public async getAllFeeds(params: FeedQueryParams): Promise<Feed[]> {
-        return await this.feedModel.find({}).select(defaultProjection);
+    public async getAllFeeds(
+        params: FeedQueryParams,
+        pagination: PaginationInterface,
+        sort: SortInterface): Promise<Feed[]> {
+        console.log(params, pagination, sort);
+
+        return await this.feedModel.find(params)
+        .limit(pagination.limit)
+        .sort(sort.sort)
+        .select(defaultProjection);
     }
 
     public async createFeed(createFeedDto: FeedDto): Promise<Feed> {

@@ -37,11 +37,11 @@ export class FeedScrapingService {
             const href = $element($element('a')[0]).attr('href');
             const spanTitle = $element($element('span')[0]).html();
             const feed: FeedDto = {
-                url: href,
+                url: url.includes('bbc.com') ? 'bbc.com' + href : href,
                 title: spanTitle ?? '',
                 content: $element($element('a')[0]).text(),
                 autor: $element($element('a')[1]).text() === $element($element('a')[0]).text() ? null : $element($element('a')[1]).text(),
-                noticeDate: new Date(),
+                dateNotice: new Date(),
                 source: url
             };
             feedDtos.push(feed);

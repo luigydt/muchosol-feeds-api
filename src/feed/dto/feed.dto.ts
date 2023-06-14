@@ -16,7 +16,7 @@ export class FeedDto {
     hash?: string;
 
     @IsDate()
-    noticeDate?: Date
+    dateNotice?: Date
 
     @IsString()
     content?: string;

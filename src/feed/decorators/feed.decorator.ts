@@ -18,8 +18,8 @@ export const FeedDecorator = createParamDecorator((data, ctx: ExecutionContext) 
     if (req.body.source) {
         feedDTO.source = req.body.source as string
     }
-    if (req.body.noticeDate) {
-        feedDTO.noticeDate = moment(req.body.noticeDate, 'DD-MM-YYYY').toDate()
+    if (req.body.dateNotice) {
+        feedDTO.dateNotice = moment(req.body.dateNotice, 'DD-MM-YYYY').toDate()
     }
     if (req.body.content) {
         feedDTO.content = req.body.content as string
