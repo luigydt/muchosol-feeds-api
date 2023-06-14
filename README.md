@@ -33,8 +33,10 @@ $ npm install
 ```
 
 ## Configuration
+```bash
+create .env like env-template with Uri conection to mongod ( Ex. mongodb://localhost/feeds)
+```
 
-created .env like env-template with Uri conection to mongod ( Ex. mongodb://localhost/feeds)
 
 ## Running the app
 
