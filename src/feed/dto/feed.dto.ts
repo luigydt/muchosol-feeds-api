@@ -4,33 +4,33 @@ import { IsString, IsDate } from "class-validator";
 export class FeedDto {
 
     @IsString()
-    type: string;
+    type?: string;
 
     @IsString()
-    title: string;
+    title?: string;
 
     @IsString()
-    description: string;
+    description?: string;
 
     @IsString()
-    hash: string;
+    hash?: string;
 
     @IsDate()
-    noticeDate: Date
+    noticeDate?: Date
 
     @IsString()
-    content: string;
+    content?: string;
 
     @IsString()
-    autor: string;
+    autor?: string;
 
     @IsString()
-    source: string;
+    source?: string;
 
     @IsString()
     url?: string;
 
     @IsString()
-    state: string;
+    state?: string;
 
 }

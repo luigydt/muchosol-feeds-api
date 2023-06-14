@@ -5,15 +5,17 @@ import { FeedDto } from '../dto/feed.dto'
 import { FeedDecorator } from '../decorators/feed.decorator';
 import { FeedModelDecorator } from '../decorators/feed.one.decorator';
 import { feedModuleConfig } from '../config';
-
+import { FeedScrapingService } from '../services/feed.scraping.service';
+import { Url } from '../decorators/url.decorator';
 
 
 @Controller('feeds')
 export class FeedController {
     constructor(
-        private feedService: FeedService
+        protected readonly feedService: FeedService,
+        protected readonly feedScrapService: FeedScrapingService
     ) { }
-
+    //TODO:Params
     @Get('/')
     async getAllFeeds(
         @Query() params: FeedQueryParams
@@ -35,6 +37,14 @@ export class FeedController {
         return await this.feedService.createFeed(createFeedDto);
     }
 
+    @Post('/feed-scrap')
+    async createFeedFromScrap(
+        @Url() url: string
+    ): Promise<string> {
+        this.feedScrapService.getData(url);
+        return 'All notices start to add DB'
+    }
+
     @Patch(`:${feedModuleConfig.id}`)
     async updateFeed(
         @FeedModelDecorator() feedHash: string,
@@ -46,7 +56,8 @@ export class FeedController {
     @Delete(`:${feedModuleConfig.id}`)
     async deleteFeed(
         @FeedModelDecorator() feedHash: string,
-    ) {
-        return await this.feedService.deleteFeed(feedHash)
+    ): Promise<string> {
+        this.feedService.deleteFeed(feedHash)
+        return `Feed with id ${feedHash} was removed`
     }
 }
