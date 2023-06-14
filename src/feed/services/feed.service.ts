@@ -13,7 +13,9 @@ export class FeedService {
         private readonly feedModel: Model<Feed>) {
     }
     public async getAllFeeds(params: FeedQueryParams): Promise<Feed[]> {
-        return await this.feedModel.find();
+        return await this.feedModel.find({
+            
+        });
     }
 
     public async createFeed(createFeedDto: FeedDto): Promise<Feed> {

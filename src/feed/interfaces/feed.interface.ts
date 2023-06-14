@@ -16,5 +16,14 @@ export interface Feed extends Document {
 
 export interface FeedQueryParams {
     type: string;
-    date: string
+    title: string;
+    description: string;
+    content: string;
+    autor: string;
+    url?: string;
+    state: string;
+    hash: string;
+    dateNotice: Date;
+    createdAt: Date;
+    updatedAt: Date
 }

@@ -29,8 +29,7 @@ export const FeedDecorator = createParamDecorator((data, ctx: ExecutionContext) 
     }
      if (req.body.state) {
         feedDTO.state = req.body.state as string
-    }
-    
+    }    
 
     return feedDTO;
 });

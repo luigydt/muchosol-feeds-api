@@ -6,6 +6,10 @@ export const FeedSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     hash: { type: String, required: true },
-    noticeDate: { type: Date }
+    noticeDate: { type: Date },
+    content: { type: String, },
+    autor: { type: String },
+    url: { type: String },
+    state: { type: String },
 }, { timestamps: true })
 
