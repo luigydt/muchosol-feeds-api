@@ -32,6 +32,10 @@
 $ npm install
 ```
 
+## Configuration
+
+created .env like env-template with Uri conection to mongod ( Ex. mongodb://localhost/feeds)
+
 ## Running the app
 
 ```bash
@@ -42,21 +46,7 @@ $ npm run start
 $ npm run start:dev
 
 # production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+$ npm run start:prod```
 
 ## Support
 
